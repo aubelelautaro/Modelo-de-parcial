@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1529680473 source:c:\users\alumno\desktop\prueba parcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Tramite.h"
+	"ArrayList.h"
+
+1529680135 source:c:\users\alumno\desktop\prueba parcial\tramite.c
+	<stdio.h>
+	<stdlib.h>
+	"Tramite.h"
+
+1529679516 c:\users\alumno\desktop\prueba parcial\tramite.h
+	"ArrayList.h"
+
+1529677080 source:c:\users\alumno\desktop\prueba parcial\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1529673127 c:\users\alumno\desktop\prueba parcial\arraylist.h
+
