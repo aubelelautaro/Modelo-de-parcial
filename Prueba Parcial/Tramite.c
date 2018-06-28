@@ -120,7 +120,6 @@ int atenderTramite(ArrayList* listaPendientes, ArrayList* listaAtendidos)
         tramiteActual = (eTramite*) listaPendientes->pop(listaPendientes, 0);
 
         listaAtendidos->add(listaAtendidos,tramiteActual);
-        printf("Cliente a ser atendido: ");
 
         mostrarTramite(tramiteActual);
     }

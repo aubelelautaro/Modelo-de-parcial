@@ -21,3 +21,25 @@
 
 1529673127 c:\users\alumno\desktop\prueba parcial\arraylist.h
 
+1529666532 source:c:\users\usuario\downloads\modelo-de-parcial-master\prueba parcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Tramite.h"
+	"ArrayList.h"
+
+1529666532 c:\users\usuario\downloads\modelo-de-parcial-master\prueba parcial\tramite.h
+	"ArrayList.h"
+
+1529666532 c:\users\usuario\downloads\modelo-de-parcial-master\prueba parcial\arraylist.h
+
+1530145955 source:c:\users\usuario\downloads\modelo-de-parcial-master\prueba parcial\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1530144546 source:c:\users\usuario\downloads\modelo-de-parcial-master\prueba parcial\tramite.c
+	<stdio.h>
+	<stdlib.h>
+	"Tramite.h"
+

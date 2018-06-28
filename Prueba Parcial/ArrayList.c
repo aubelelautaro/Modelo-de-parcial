@@ -370,7 +370,7 @@ void* al_pop(ArrayList* this,int index)
     if (this != NULL && index >= 0 && index < this->len(this))
     {
         returnAux = *(this->pElements + index);
-        al_remove(this,index);
+        contract(this,index);
     }
 
     return returnAux;
@@ -456,27 +456,32 @@ int al_sort(ArrayList* this, int (*pFunc)(void* ,void*), int order)
     void** auxElement;
     if(this != NULL && (order == 1 || order == 0) && pFunc != NULL)
     {
-        if (this->size>1)
+        returnAux = 0;
+        if (this->len(this)>1)
         {
-            for (i=0;i<this->size-1;i++)
+            for (i=0;i<(this->len(this))-1;i++)
             {
-                for (j=i+1;j<this->size;j++)
+                for (j=i+1;j<this->len(this);j++)
                 {
                     if(order==1 && pFunc(*(this->pElements+i),*(this->pElements+j))== 1)
                     {
-                        auxElement=this->pElements[i];
-                        this->pElements[i]=this->pElements[j];
-                        this->pElements[j]=auxElement;
+                        auxElement=*(this->pElements+i);
+                        *(this->pElements+i)=*(this->pElements+j);
+                        *(this->pElements+j)=auxElement;
                     }else if (order==0 && pFunc(*(this->pElements+i),*(this->pElements+j))== -1)
                     {
-                        auxElement=this->pElements[i];
-                        this->pElements[i]=this->pElements[j];
-                        this->pElements[j]=auxElement;
+                        auxElement=*(this->pElements+i);
+                        *(this->pElements+i)=*(this->pElements+j);
+                        *(this->pElements+j)=auxElement;
+                    }
+                    else
+                    {
+                        returnAux=-1;
+                        break;
                     }
                 }
             }
         }
-        returnAux=0;
     }
 
 
@@ -516,25 +521,16 @@ int resizeUp(ArrayList* this)
 int expand(ArrayList* this,int index)
 {
     int returnAux = -1;
+    int i;
 
-    if( this != NULL )
+    if( this != NULL && index>=0 && index<this->len(this))
     {
-        int i;
-
+        for(i=0; i< this->len(this);i++)
+        {
+            *(this->pElements + i) = *(this->pElements + i+1);
+        }
         this->size++;
         returnAux = 0;
-
-        if(this->len(this) == this->reservedSize)
-        {
-            returnAux =  resizeUp(this);
-        }
-        if(!returnAux)
-        {
-            for(i = this->len(this); i> index;i--)
-            {
-                *(this->pElements + index ) = *(this->pElements + index - 1 );
-            }
-        }
     }
     return returnAux;
 }
@@ -548,21 +544,16 @@ int expand(ArrayList* this,int index)
 int contract(ArrayList* this,int index)
 {
     int returnAux = -1;
+    int i;
 
     if (this != NULL && index >= 0 && index < this->len(this))
     {
-        returnAux = 0;
-        int i;
-
-        for (i= index+1;i<this->len(this); i++)
+        for (i= index;i<this->len(this); i++)
         {
-            *(this->pElements + (index -1) ) = *(this->pElements + index);
-
-            if (i == (this->len(this)- 1))
-            {
-                free(*(this->pElements + index));
-            }
+            *(this->pElements + i ) = *(this->pElements + i +1);
+            returnAux = 0;
         }
+        this->size--;
     }
     return returnAux;
 }
